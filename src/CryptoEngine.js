@@ -173,7 +173,7 @@ export default class CryptoEngine
 									switch(algorithm.hash.name.toUpperCase())
 									{
 										case "SHA-1":
-											jwk.alg = "RSA-OAEP-1";
+											jwk.alg = "RSA-OAEP";
 											break;
 										case "SHA-256":
 											jwk.alg = "RSA-OAEP-256";
@@ -328,7 +328,7 @@ export default class CryptoEngine
 									switch(algorithm.hash.name.toUpperCase())
 									{
 										case "SHA-1":
-											jwk.alg = "RSA-OAEP-1";
+											jwk.alg = "RSA-OAEP";
 											break;
 										case "SHA-256":
 											jwk.alg = "RSA-OAEP-256";
