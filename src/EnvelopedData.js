@@ -1116,16 +1116,16 @@ export default class EnvelopedData
 				switch(this.recipientInfos[i].variant)
 				{
 					case 1: // KeyTransRecipientInfo
-						currentSequence = SubKeyTransRecipientInfo(i);
+						currentSequence = SubKeyTransRecipientInfo.call(this, i);
 						break;
 					case 2: // KeyAgreeRecipientInfo
-						currentSequence = SubKeyAgreeRecipientInfo(i);
+						currentSequence = SubKeyAgreeRecipientInfo.call(this, i);
 						break;
 					case 3: // KEKRecipientInfo
-						currentSequence = SubKEKRecipientInfo(i);
+						currentSequence = SubKEKRecipientInfo.call(this, i);
 						break;
 					case 4: // PasswordRecipientinfo
-						currentSequence = SubPasswordRecipientinfo(i);
+						currentSequence = SubPasswordRecipientinfo.call(this, i);
 						break;
 					default:
 						return Promise.reject(`Uknown recipient type in array with index ${i}`);
@@ -1582,16 +1582,16 @@ export default class EnvelopedData
 			switch(this.recipientInfos[recipientIndex].variant)
 			{
 				case 1: // KeyTransRecipientInfo
-					currentSequence = SubKeyTransRecipientInfo(recipientIndex);
+					currentSequence = SubKeyTransRecipientInfo.call(this, recipientIndex);
 					break;
 				case 2: // KeyAgreeRecipientInfo
-					currentSequence = SubKeyAgreeRecipientInfo(recipientIndex);
+					currentSequence = SubKeyAgreeRecipientInfo.call(this, recipientIndex);
 					break;
 				case 3: // KEKRecipientInfo
-					currentSequence = SubKEKRecipientInfo(recipientIndex);
+					currentSequence = SubKEKRecipientInfo.call(this, recipientIndex);
 					break;
 				case 4: // PasswordRecipientinfo
-					currentSequence = SubPasswordRecipientinfo(recipientIndex);
+					currentSequence = SubPasswordRecipientinfo.call(this, recipientIndex);
 					break;
 				default:
 					return Promise.reject(`Uknown recipient type in array with index ${recipientIndex}`);
