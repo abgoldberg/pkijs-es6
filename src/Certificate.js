@@ -714,9 +714,9 @@ export default class Certificate
 		//region Importing public key
 		sequence = sequence.then(() => {
 			//region Get information about public key algorithm and default parameters for import
-			const algorithmObject = getAlgorithmByOID(this.subjectPublicKeyInfo.algorithm.algorithmId);
+			const algorithmObject = getAlgorithmByOID(subjectPublicKeyInfo.algorithm.algorithmId);
 			if(("name" in algorithmObject) === false)
-				return Promise.reject(`Unsupported public key algorithm: ${this.subjectPublicKeyInfo.algorithm.algorithmId}`);
+				return Promise.reject(`Unsupported public key algorithm: ${subjectPublicKeyInfo.algorithm.algorithmId}`);
 
 			const algorithm = getAlgorithmParameters(algorithmObject.name, "importkey");
 			if("hash" in algorithm.algorithm)
