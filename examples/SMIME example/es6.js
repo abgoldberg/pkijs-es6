@@ -1,18 +1,9 @@
 import * as asn1js from "asn1js";
 import { arrayBufferToString, stringToArrayBuffer, bufferToHexCodes, utilConcatBuf } from "pvutils";
-import { getCrypto, getAlgorithmParameters } from "pkijs/src/common";
 import Certificate from "pkijs/src/Certificate";
-import AttributeTypeAndValue from "pkijs/src/AttributeTypeAndValue";
-import Extension from "pkijs/src/Extension";
-import Attribute from "pkijs/src/Attribute";
 import SignedData from "pkijs/src/SignedData";
-import EncapsulatedContentInfo from "pkijs/src/EncapsulatedContentInfo";
-import SignerInfo from "pkijs/src/SignerInfo";
-import IssuerAndSerialNumber from "pkijs/src/IssuerAndSerialNumber";
-import SignedAndUnsignedAttributes from "pkijs/src/SignedAndUnsignedAttributes";
 import ContentInfo from "pkijs/src/ContentInfo";
 //*********************************************************************************
-let cmsSignedBuffer = new ArrayBuffer(0); // ArrayBuffer with loaded or created CMS_Signed
 const trustedCertificates = []; // Array of root certificates from "CA Bundle"
 //*********************************************************************************
 //region Auxiliary functions 
@@ -221,33 +212,6 @@ export function verifySMIME()
 //endregion 
 //*********************************************************************************
 //region Functions handling file selection
-//*********************************************************************************
-export function handleFileBrowse(evt)
-{
-	const tempReader = new FileReader();
-	
-	const currentFiles = evt.target.files;
-	
-	tempReader.onload =
-		event => createCMSSigned(event.target.result);
-	
-	tempReader.readAsArrayBuffer(currentFiles[0]);
-}
-//*********************************************************************************
-export function handleParsingFile(evt)
-{
-	const tempReader = new FileReader();
-	
-	const currentFiles = evt.target.files;
-	
-	tempReader.onload =
-		event => {
-			cmsSignedBuffer = event.target.result;
-			parseCMSSigned();
-		};
-	
-	tempReader.readAsArrayBuffer(currentFiles[0]);
-}
 //*********************************************************************************
 export function handleMIMEFile(evt)
 {
