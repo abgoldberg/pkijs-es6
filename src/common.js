@@ -28,9 +28,9 @@ export function getEngine()
 //**************************************************************************************
 (function initCryptoEngine()
 {
-	if(typeof window !== "undefined")
+	if(typeof self !== "undefined")
 	{
-		if("crypto" in window)
+		if("crypto" in self)
 		{
 			let engineName = "webcrypto";
 			
@@ -39,18 +39,18 @@ export function getEngine()
 			 * @type {Object}
 			 * @property {Object} [webkitSubtle] Subtle object from Apple
 			 */
-			const cryptoObject = window.crypto;
+			const cryptoObject = self.crypto;
 			let subtleObject = null;
 
 			// Apple Safari support
-			if("webkitSubtle" in window.crypto)
+			if("webkitSubtle" in self.crypto)
 			{
-				subtleObject = window.crypto.webkitSubtle;
+				subtleObject = self.crypto.webkitSubtle;
 				engineName = "safari";
 			}
 
-			if("subtle" in window.crypto)
-				subtleObject = window.crypto.subtle;
+			if("subtle" in self.crypto)
+				subtleObject = self.crypto.subtle;
 
 			engine = {
 				name: engineName,
