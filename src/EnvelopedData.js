@@ -938,7 +938,7 @@ export default class EnvelopedData
 			//endregion
 			//region Encrypt early exported session key on recipient's public key
 			currentSequence = currentSequence.then(result =>
-				crypto.encrypt({ name: "RSA-OAEP" }, result, exportedSessionKey),
+				crypto.encrypt(result.algorithm, result, exportedSessionKey),
 				error =>
 					Promise.reject(error)
 			);
@@ -1392,9 +1392,7 @@ export default class EnvelopedData
 			//endregion
 			//region Decrypt encrypted session key
 			currentSequence = currentSequence.then(result =>
-				crypto.decrypt({
-					name: "RSA-OAEP"
-				},
+				crypto.decrypt(result.algorithm,
 				result,
 				_this.recipientInfos[index].value.encryptedKey.valueBlock.valueHex
 			), error =>
